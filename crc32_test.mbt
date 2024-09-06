@@ -66,3 +66,14 @@ test "crc32 functions correctly" {
     assert_eq!(got, pair.0)
   }
 }
+
+test "crc32 digest works correctly" {
+  let sum = @crc32.Digest::new()
+  let pair = golden[0]
+  for b in pair.1 {
+    sum.write(b)
+  }
+  let got = sum.digest()
+  let want = 0x414fa339U
+  assert_eq!(got, want)
+}

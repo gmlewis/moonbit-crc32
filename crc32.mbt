@@ -19,6 +19,11 @@ pub fn name(self : Digest) -> String {
   self.name
 }
 
+/// `digest` returns the final crc32 as a UInt.
+pub fn digest(self : Digest) -> UInt {
+  self.crc.lnot()
+}
+
 /// `check_sum` returns the final crc32 as a hex string.
 pub fn check_sum(self : Digest) -> String {
   let digest = self.crc.lnot()
