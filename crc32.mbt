@@ -27,14 +27,14 @@ pub fn digest(self : Digest) -> UInt {
 /// `check_sum` returns the final crc32 as a hex string.
 pub fn check_sum(self : Digest) -> String {
   let digest = self.crc.lnot()
-  let result = Buffer::new(size_hint=8)
-  result.write_char(to_hex(digest.lsr(28) & 0xf))
-  result.write_char(to_hex(digest.lsr(24) & 0xf))
-  result.write_char(to_hex(digest.lsr(20) & 0xf))
-  result.write_char(to_hex(digest.lsr(16) & 0xf))
-  result.write_char(to_hex(digest.lsr(12) & 0xf))
-  result.write_char(to_hex(digest.lsr(8) & 0xf))
-  result.write_char(to_hex(digest.lsr(4) & 0xf))
+  let result = @buffer.new(size_hint=8)
+  result.write_char(to_hex((digest >> 28) & 0xf))
+  result.write_char(to_hex((digest >> 24) & 0xf))
+  result.write_char(to_hex((digest >> 20) & 0xf))
+  result.write_char(to_hex((digest >> 16) & 0xf))
+  result.write_char(to_hex((digest >> 12) & 0xf))
+  result.write_char(to_hex((digest >> 8) & 0xf))
+  result.write_char(to_hex((digest >> 4) & 0xf))
   result.write_char(to_hex(digest & 0xf))
   result.to_string()
 }
@@ -51,7 +51,7 @@ fn to_hex(v : UInt) -> Char {
 /// `write` writes a byte to the digest.
 pub fn write(self : Digest, b : Byte) -> Unit {
   self.crc = table[(self.crc.to_byte() & b'\xff').lxor(b).to_int()] ^
-    self.crc.lsr(8)
+    (self.crc >> 8)
 }
 
 let table : FixedArray[UInt] = [
