@@ -3,7 +3,7 @@
 /// information.
 /// This package is based on the Go Rosetta Stone implementation found here:
 /// https://rosettacode.org/wiki/CRC-32
-pub struct Digest {
+pub(all) struct Digest {
   mut crc : UInt
   name : String
 }
@@ -36,7 +36,7 @@ pub fn check_sum(self : Digest) -> String {
   result.write_char(to_hex((digest >> 8) & 0xf))
   result.write_char(to_hex((digest >> 4) & 0xf))
   result.write_char(to_hex(digest & 0xf))
-  result.to_string()
+  result.to_unchecked_string()
 }
 
 fn to_hex(v : UInt) -> Char {
