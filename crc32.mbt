@@ -14,7 +14,7 @@ pub fn Digest::new() -> Digest {
 }
 
 ///|
-let _interface : HashFunc = Digest::new()
+let _interface : &HashFunc = Digest::new()
 
 ///|
 pub fn name(self : Digest) -> String {
