@@ -1,0 +1,26 @@
+package gmlewis/crc32
+
+// Values
+
+// Types and methods
+pub(all) struct Digest {
+  crc : UInt
+  name : String
+}
+impl Digest {
+  check_sum(Self) -> String
+  digest(Self) -> UInt
+  name(Self) -> String
+  new() -> Self
+  write(Self, Byte) -> Unit
+}
+
+// Type aliases
+
+// Traits
+pub(open) trait HashFunc {
+  name(Self) -> String
+  write(Self, Byte) -> Unit
+  check_sum(Self) -> String
+}
+

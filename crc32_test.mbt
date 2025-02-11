@@ -55,6 +55,7 @@ let golden = [
   ("8e0bb443", b"How can you write a big system without C++?  -Paul Glick"),
 ]
 
+///|
 test "crc32 functions correctly" {
   for pair in golden {
     let sum = @crc32.Digest::new()
@@ -66,6 +67,7 @@ test "crc32 functions correctly" {
   }
 }
 
+///|
 test "crc32 digest works correctly" {
   let sum = @crc32.Digest::new()
   let pair = golden[0]
