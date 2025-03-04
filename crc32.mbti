@@ -8,12 +8,10 @@ pub(all) struct Digest {
   name : String
 }
 impl Digest {
-  check_sum(Self) -> String
   digest(Self) -> UInt
-  name(Self) -> String
   new() -> Self
-  write(Self, Byte) -> Unit
 }
+impl HashFunc for Digest
 
 // Type aliases
 

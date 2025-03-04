@@ -17,7 +17,7 @@ pub fn Digest::new() -> Digest {
 let _interface : &HashFunc = Digest::new()
 
 ///|
-pub fn name(self : Digest) -> String {
+pub impl HashFunc for Digest with name(self) {
   self.name
 }
 
@@ -27,7 +27,7 @@ pub fn digest(self : Digest) -> UInt {
 }
 
 ///| `check_sum` returns the final crc32 as a hex string.
-pub fn check_sum(self : Digest) -> String {
+pub impl HashFunc for Digest with check_sum(self) {
   let digest = self.crc.lnot()
   let result = @buffer.new(size_hint=8)
   result.write_char(to_hex((digest >> 28) & 0xf))
@@ -52,7 +52,7 @@ fn to_hex(v : UInt) -> Char {
 }
 
 ///| `write` writes a byte to the digest.
-pub fn write(self : Digest, b : Byte) -> Unit {
+pub impl HashFunc for Digest with write(self, b) {
   self.crc = table[(self.crc.to_byte() & b'\xff').lxor(b).to_int()] ^
     (self.crc >> 8)
 }
