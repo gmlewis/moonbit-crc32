@@ -1,4 +1,5 @@
-///| `@crc32.Digest` implements the 32-bit cyclic redundancy check, or CRC-32,
+///|
+/// `@crc32.Digest` implements the 32-bit cyclic redundancy check, or CRC-32,
 /// checksum. See https://en.wikipedia.org/wiki/Cyclic_redundancy_check for
 /// information.
 /// This package is based on the Go Rosetta Stone implementation found here:
@@ -8,7 +9,8 @@ pub(all) struct Digest {
   name : String
 }
 
-///| `Digest::new` returns a new, reset Digest, ready to sum.
+///|
+/// `Digest::new` returns a new, reset Digest, ready to sum.
 pub fn Digest::new() -> Digest {
   { crc: 0U.lnot(), name: "crc32" }
 }
@@ -21,12 +23,14 @@ pub impl HashFunc for Digest with name(self) {
   self.name
 }
 
-///| `digest` returns the final crc32 as a UInt.
+///|
+/// `digest` returns the final crc32 as a UInt.
 pub fn digest(self : Digest) -> UInt {
   self.crc.lnot()
 }
 
-///| `check_sum` returns the final crc32 as a hex string.
+///|
+/// `check_sum` returns the final crc32 as a hex string.
 pub impl HashFunc for Digest with check_sum(self) {
   let digest = self.crc.lnot()
   let result = @buffer.new(size_hint=8)
@@ -51,7 +55,8 @@ fn to_hex(v : UInt) -> Char {
   }
 }
 
-///| `write` writes a byte to the digest.
+///|
+/// `write` writes a byte to the digest.
 pub impl HashFunc for Digest with write(self, b) {
   self.crc = table[(self.crc.to_byte() & b'\xff').lxor(b).to_int()] ^
     (self.crc >> 8)
