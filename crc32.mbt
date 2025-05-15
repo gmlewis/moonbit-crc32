@@ -49,9 +49,9 @@ pub impl HashFunc for Digest with check_sum(self) {
 fn to_hex(v : UInt) -> Char {
   let v = v.reinterpret_as_int()
   if v < 10 {
-    Char::from_int(v + b'0'.to_int())
+    Int::unsafe_to_char(v + b'0'.to_int())
   } else {
-    Char::from_int(v - 10 + b'a'.to_int())
+    Int::unsafe_to_char(v - 10 + b'a'.to_int())
   }
 }
 
