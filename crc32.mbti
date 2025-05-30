@@ -8,10 +8,8 @@ pub(all) struct Digest {
   mut crc : UInt
   name : String
 }
-impl Digest {
-  digest(Self) -> UInt
-  new() -> Self
-}
+fn Digest::digest(Self) -> UInt
+fn Digest::new() -> Self
 impl HashFunc for Digest
 
 // Type aliases
