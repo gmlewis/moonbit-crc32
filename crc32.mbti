@@ -1,7 +1,6 @@
 package "gmlewis/crc32"
 
 // Values
-fn digest(Digest) -> UInt
 
 // Types and methods
 pub(all) struct Digest {
