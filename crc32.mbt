@@ -25,7 +25,7 @@ pub impl HashFunc for Digest with name(self) {
 
 ///|
 /// `digest` returns the final crc32 as a UInt.
-pub fn digest(self : Digest) -> UInt {
+pub fn Digest::digest(self : Digest) -> UInt {
   self.crc.lnot()
 }
 
