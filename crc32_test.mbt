@@ -5,7 +5,7 @@
 /// Copyright 2009 The Go Authors. All rights reserved.
 /// Use of this source code is governed by a BSD-style
 /// license that can be found in the LICENSE file.
-let golden = [
+let golden : ReadOnlyArray[(String, Bytes)] = [
   ("414fa339", b"The quick brown fox jumps over the lazy dog"),
   ("00000000", b""),
   ("e8b7be43", b"a"),
