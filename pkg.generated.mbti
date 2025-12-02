@@ -10,9 +10,9 @@ pub(all) struct Digest {
   mut crc : UInt
   name : String
 }
-fn Digest::digest(Self) -> UInt
-fn Digest::new() -> Self
-impl HashFunc for Digest
+pub fn Digest::digest(Self) -> UInt
+pub fn Digest::new() -> Self
+pub impl HashFunc for Digest
 
 // Type aliases
 
