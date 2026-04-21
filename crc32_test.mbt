@@ -64,7 +64,7 @@ test "crc32 functions correctly" {
       sum.write(b)
     }
     let got = sum.check_sum()
-    assert_eq(got, pair.0)
+    inspect(got, content=pair.0)
   }
 }
 
