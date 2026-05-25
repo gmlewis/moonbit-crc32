@@ -1,0 +1,13 @@
+name = "gmlewis/crc32"
+
+version = "0.8.17"
+
+readme = "README.md"
+
+repository = "https://github.com/gmlewis/moonbit-crc32"
+
+license = "Apache-2.0"
+
+keywords = [ "crc32", "hash", "algorithm", "moonbit" ]
+
+description = "MoonBit crc32: provide simple crc32 hash algorithm."

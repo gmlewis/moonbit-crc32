@@ -19,7 +19,7 @@ pub fn Digest::new() -> Digest {
 let _trait : &HashFunc = Digest::new()
 
 ///|
-pub impl HashFunc for Digest with name(self) {
+pub impl HashFunc for Digest with fn name(self) {
   self.name
 }
 
@@ -31,17 +31,17 @@ pub fn Digest::digest(self : Digest) -> UInt {
 
 ///|
 /// `check_sum` returns the final crc32 as a hex string.
-pub impl HashFunc for Digest with check_sum(self) {
+pub impl HashFunc for Digest with fn check_sum(self) {
   let digest = self.crc.lnot()
-  let result = @buffer.new(size_hint=8)
-  result.write_char(to_hex((digest >> 28) & 0xf))
-  result.write_char(to_hex((digest >> 24) & 0xf))
-  result.write_char(to_hex((digest >> 20) & 0xf))
-  result.write_char(to_hex((digest >> 16) & 0xf))
-  result.write_char(to_hex((digest >> 12) & 0xf))
-  result.write_char(to_hex((digest >> 8) & 0xf))
-  result.write_char(to_hex((digest >> 4) & 0xf))
-  result.write_char(to_hex(digest & 0xf))
+  let result = Buffer(size_hint=8)
+  result.write_char_utf16le(to_hex((digest >> 28) & 0xf))
+  result.write_char_utf16le(to_hex((digest >> 24) & 0xf))
+  result.write_char_utf16le(to_hex((digest >> 20) & 0xf))
+  result.write_char_utf16le(to_hex((digest >> 16) & 0xf))
+  result.write_char_utf16le(to_hex((digest >> 12) & 0xf))
+  result.write_char_utf16le(to_hex((digest >> 8) & 0xf))
+  result.write_char_utf16le(to_hex((digest >> 4) & 0xf))
+  result.write_char_utf16le(to_hex(digest & 0xf))
   result.contents().to_unchecked_string()
 }
 
@@ -57,7 +57,7 @@ fn to_hex(v : UInt) -> Char {
 
 ///|
 /// `write` writes a byte to the digest.
-pub impl HashFunc for Digest with write(self, b) {
+pub impl HashFunc for Digest with fn write(self, b) {
   self.crc = table[(self.crc.to_byte() & b'\xff').lxor(b).to_int()] ^
     (self.crc >> 8)
 }
