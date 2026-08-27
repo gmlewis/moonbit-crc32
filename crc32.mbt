@@ -12,7 +12,7 @@ pub(all) struct Digest {
 ///|
 /// `Digest::new` returns a new, reset Digest, ready to sum.
 pub fn Digest::new() -> Digest {
-  { crc: 0U.lnot(), name: "crc32" }
+  { crc: 0U.lnot(), name: "crc32", }
 }
 
 ///|
