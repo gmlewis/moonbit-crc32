@@ -16,9 +16,6 @@ pub fn Digest::new() -> Digest {
 }
 
 ///|
-let _trait : &HashFunc = Digest::new()
-
-///|
 pub extend Digest with HashFunc::{name, reset, size, write, check_sum}
 
 ///|
