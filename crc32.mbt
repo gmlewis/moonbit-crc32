@@ -19,8 +19,23 @@ pub fn Digest::new() -> Digest {
 let _trait : &HashFunc = Digest::new()
 
 ///|
+pub extend Digest with HashFunc::{name, reset, size, write, check_sum}
+
+///|
 pub impl HashFunc for Digest with fn name(self) {
   self.name
+}
+
+///|
+/// `reset` returns the digest to its initial state, ready to sum again.
+pub impl HashFunc for Digest with fn reset(self) {
+  self.crc = 0U.lnot()
+}
+
+///|
+/// `size` is the crc32 digest size in bytes.
+pub impl HashFunc for Digest with fn size(_self) {
+  4
 }
 
 ///|

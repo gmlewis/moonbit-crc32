@@ -79,3 +79,50 @@ test "crc32 digest works correctly" {
   let want = 0x414fa339U
   assert_eq(got, want)
 }
+
+///|
+test "a single Digest can be reused via reset across the golden table" {
+  let sum = @crc32.Digest::new()
+  for pair in golden {
+    sum.reset()
+    for b in pair.1 {
+      sum.write(b)
+    }
+    inspect(sum.check_sum(), content=pair.0)
+  }
+}
+
+///|
+test "reset makes a dirty Digest match a freshly created one" {
+  for pair in golden {
+    let fresh = @crc32.Digest::new()
+    for b in pair.1 {
+      fresh.write(b)
+    }
+    let reused = @crc32.Digest::new()
+    for b in b"data that must not survive the reset" {
+      reused.write(b)
+    }
+    reused.reset()
+    for b in pair.1 {
+      reused.write(b)
+    }
+    assert_eq(reused.check_sum(), fresh.check_sum())
+    assert_eq(reused.check_sum(), pair.0)
+  }
+}
+
+///|
+test "size reports the digest size in bytes" {
+  let sum = @crc32.Digest::new()
+  inspect(sum.name(), content="crc32")
+  inspect(sum.size(), content="4")
+  // `check_sum` renders two hex characters per byte.
+  for pair in golden {
+    sum.reset()
+    for b in pair.1 {
+      sum.write(b)
+    }
+    assert_eq(sum.check_sum().length(), sum.size() * 2)
+  }
+}
