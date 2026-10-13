@@ -5,7 +5,7 @@
 /// This package is based on the Go Rosetta Stone implementation found here:
 /// https://rosettacode.org/wiki/CRC-32
 pub(all) struct Digest {
-  mut crc : UInt
+  mut crc : UInt32
   name : String
 }
 
@@ -37,7 +37,7 @@ pub impl HashFunc for Digest with fn size(_self) {
 
 ///|
 /// `digest` returns the final crc32 as a UInt.
-pub fn Digest::digest(self : Digest) -> UInt {
+pub fn Digest::digest(self : Digest) -> UInt32 {
   self.crc.lnot()
 }
 
@@ -58,12 +58,12 @@ pub impl HashFunc for Digest with fn check_sum(self) {
 }
 
 ///|
-fn to_hex(v : UInt) -> Char {
+fn to_hex(v : UInt32) -> Char {
   let v = v.reinterpret_as_int()
   if v < 10 {
-    Int::unsafe_to_char(v + b'0'.to_int())
+    Int32::unsafe_to_char(v + b'0'.to_int())
   } else {
-    Int::unsafe_to_char(v - 10 + b'a'.to_int())
+    Int32::unsafe_to_char(v - 10 + b'a'.to_int())
   }
 }
 
@@ -75,7 +75,7 @@ pub impl HashFunc for Digest with fn write(self, b) {
 }
 
 ///|
-let table : FixedArray[UInt] = [
+let table : FixedArray[UInt32] = [
   0, 1996959894, 3993919788, 2567524794, 124634137, 1886057615, 3915621685, 2657392035,
   249268274, 2044508324, 3772115230, 2547177864, 162941995, 2125561021, 3887607047,
   2428444049, 498536548, 1789927666, 4089016648, 2227061214, 450548861, 1843258603,
