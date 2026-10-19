@@ -7,15 +7,15 @@ package "gmlewis/crc32"
 
 // Types and methods
 pub(all) struct Digest {
-  mut crc : UInt
+  mut crc : UInt32
   name : String
 }
 pub fn Digest::check_sum(Self) -> String
-pub fn Digest::digest(Self) -> UInt
+pub fn Digest::digest(Self) -> UInt32
 pub fn Digest::name(Self) -> String
 pub fn Digest::new() -> Self
 pub fn Digest::reset(Self) -> Unit
-pub fn Digest::size(Self) -> Int
+pub fn Digest::size(Self) -> Int32
 pub fn Digest::write(Self, Byte) -> Unit
 pub impl HashFunc for Digest
 
@@ -25,7 +25,7 @@ pub impl HashFunc for Digest
 pub(open) trait HashFunc {
   fn name(Self) -> String
   fn reset(Self) -> Unit
-  fn size(Self) -> Int
+  fn size(Self) -> Int32
   fn write(Self, Byte) -> Unit
   fn check_sum(Self) -> String
 }

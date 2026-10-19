@@ -1,6 +1,6 @@
 name = "gmlewis/crc32"
 
-version = "0.9.1"
+version = "0.9.2"
 
 readme = "README.md"
 
