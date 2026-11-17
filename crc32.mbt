@@ -45,7 +45,7 @@ pub fn Digest::digest(self : Digest) -> UInt32 {
 /// `check_sum` returns the final crc32 as a hex string.
 pub impl HashFunc for Digest with fn check_sum(self) {
   let digest = self.crc.lnot()
-  let result = Buffer(size_hint=8)
+  let result = Buffer(capacity=8)
   result.write_char_utf16le(to_hex((digest >> 28) & 0xf))
   result.write_char_utf16le(to_hex((digest >> 24) & 0xf))
   result.write_char_utf16le(to_hex((digest >> 20) & 0xf))
